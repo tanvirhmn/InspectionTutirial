@@ -21,10 +21,11 @@ export class InspectionApiService {
   }
 
   updateInspection(id:number|string, data:any){
-    return this.httpClient.put(this.inspectionAPIURL+ `/Inspections/${id}`,data);
+    console.log(this.inspectionAPIURL+ `/Inspections/${id}`);
+    return this.httpClient.put(this.inspectionAPIURL+ `Inspections/${id}`,data);
   }
 
   deleteInspection(id:number){
-    return this.httpClient.delete(this.inspectionAPIURL+ `/Inspections/${id}`);
+    return this.httpClient.delete(this.inspectionAPIURL+ `Inspections/${id}`);
   }
 }

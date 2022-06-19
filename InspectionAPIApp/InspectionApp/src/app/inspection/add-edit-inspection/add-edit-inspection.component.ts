@@ -42,8 +42,9 @@ inspectionTypeId!:number;
     var inspection={
       status: this.status,
       comments:this.comments,
-      isnpectionTypeId:this.inspectionTypeId
+      inspectionTypeId:this.inspectionTypeId
     };
+    
     this.inspectionApiService.addInspection(inspection).subscribe(res=>{
       var closeModalButton = document.getElementById("add-edit-modal-close");
       if(closeModalButton){
@@ -62,7 +63,29 @@ inspectionTypeId!:number;
   }
 
   updateInspection(){
-
+    var inspection={
+      id:this.id,
+      status: this.status,
+      comments:this.comments,
+      inspectionTypeId:this.inspectionTypeId
+    };
+    var id:number=this.id;
+    console.log(inspection);
+    this.inspectionApiService.updateInspection(id,inspection).subscribe(res=>{
+      var closeModalButton = document.getElementById("add-edit-modal-close");
+      if(closeModalButton){
+        closeModalButton.click();
+      }
+      var showSucess = document.getElementById("update-sucess-alert");
+      if(showSucess){
+        showSucess.style.display = "block";
+      }
+      setTimeout(function(){
+        if(showSucess){
+          showSucess.style.display = "none";
+        }
+      }, 4000);
+    });
   }
 
 }

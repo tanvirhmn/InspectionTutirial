@@ -18,7 +18,6 @@
     </div>
     
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="add-edit-modal-close">Close</button>
         <button type="button" class="btn btn-primary" (click)="addInspection()" *ngIf="inspection.id==0">Add</button>
         <button type="button" class="btn btn-primary" (click)="updateInspection()" *ngIf="inspection.id!=0">Update</button>
       </div>

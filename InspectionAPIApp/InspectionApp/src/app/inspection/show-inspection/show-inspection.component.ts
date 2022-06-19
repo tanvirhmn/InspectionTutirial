@@ -6,8 +6,7 @@ import { InspectiontypeApiService } from 'src/app/shared/inspectiontype-api.serv
 @Component({
   selector: 'app-show-inspection',
   templateUrl: './show-inspection.component.html',
-  styles: [
-  ]
+  styleUrls: ['./show-inspection.component.css']
 })
 export class ShowInspectionComponent implements OnInit {
 
@@ -61,5 +60,29 @@ export class ShowInspectionComponent implements OnInit {
       this.modalTitle = "Add Inspection";
       //console.log("Modal Add");
   }
-
+  closeModal(){
+    this.activateAddEditInspectionComponent = false;
+    this.inspectionList$ = this.inspectionApiService.getInspectionList();
+  }
+  modalEdit(item:any){
+    this.inspection = item;
+    this.activateAddEditInspectionComponent = true;
+    this.modalTitle = "Edit Inspection";
+  }
+  modalDelete(id:number){
+    if(confirm("Do you want to Delete") == true){
+      this.inspectionApiService.deleteInspection(id).subscribe(res=>{ 
+        var showSucess = document.getElementById("delete-sucess-alert");
+        if(showSucess){
+          showSucess.style.display = "block";
+        }
+        setTimeout(function(){
+          if(showSucess){
+            showSucess.style.display = "none";
+          }
+        }, 4000);   
+        this.inspectionList$ = this.inspectionApiService.getInspectionList();
+      });
+    }
+  }
 }
