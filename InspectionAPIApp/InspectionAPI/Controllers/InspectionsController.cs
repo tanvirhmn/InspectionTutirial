@@ -29,7 +29,7 @@ namespace InspectionAPI.Controllers
           {
               return NotFound();
           }
-            return await _context.Inspections.ToListAsync();
+            return await _context.Inspections.Include("InspectionType").ToListAsync();
         }
 
         // GET: api/Inspections/5
